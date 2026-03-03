@@ -269,6 +269,18 @@
             position: absolute; inset: 0; z-index: -1;
         }
 
+
+        #cv-pages canvas {
+            display: block;
+            max-width: 100%;
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 4px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+        #cv-viewer-wrap::-webkit-scrollbar { width: 4px; }
+        #cv-viewer-wrap::-webkit-scrollbar-track { background: transparent; }
+        #cv-viewer-wrap::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
         /* SCANLINES */
         body::before {
             content: '';
@@ -607,6 +619,7 @@
         /* REVEAL */
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.25,0.46,0.45,0.94); }
         .reveal.active { opacity: 1; transform: translateY(0); }
+        body.recruiter-mode .reveal.active { opacity: 1 !important; transform: none !important; }
 
         /* RESPONSIVE */
         @media (max-width: 1024px) {
@@ -625,6 +638,7 @@
             .tl-dot-wrap { width: 40px; }
         }
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 </head>
 <body>
     <div id="cursor-dot"></div>
@@ -1108,7 +1122,7 @@
     </section>
 
     <!-- TEMOIGNAGES -->
-    <section class="reveal">
+    <section id="softs" class="reveal">
         <div class="container">
             <div class="section-label">Avis</div>
             <h2 class="section-title">Retours Clients & Entreprises</h2>
@@ -1260,10 +1274,10 @@
         }, { threshold: 0.08 }).observe(document.querySelector('body'));
 
         // Separate observer for each .reveal
-        const ro = new IntersectionObserver(entries => {
+        window.revealObserver = new IntersectionObserver(entries => {
             entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); });
         }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-        document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+        document.querySelectorAll('.reveal').forEach(el => window.revealObserver.observe(el));
 
         // Contact Form
         async function handleSubmit(e) {
@@ -1283,15 +1297,48 @@
     // ═══════════════════════════════════════════
     // CV MODAL
     // ═══════════════════════════════════════════
-    function openCvModal() {
+    let cvLoaded = false;
+
+    async function openCvModal() {
         const modal = document.getElementById('cv-modal');
-        const iframe = document.getElementById('cv-iframe');
-        // Charger le PDF seulement à l'ouverture (évite chargement inutile)
-        if (!iframe.src || iframe.src === window.location.href) {
-            iframe.src = 'CV_Rayan_Rouis-1.pdf';
-        }
         modal.classList.add('open');
         document.body.style.overflow = 'hidden';
+
+        if (cvLoaded) return; // déjà rendu
+
+        const pagesDiv   = document.getElementById('cv-pages');
+        const loadingDiv = document.getElementById('cv-loading');
+        const errorDiv   = document.getElementById('cv-error');
+
+        try {
+            // Configurer le worker PDF.js
+            pdfjsLib.GlobalWorkerOptions.workerSrc =
+                'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+            const pdf = await pdfjsLib.getDocument('CV_Rayan_Rouis-1.pdf').promise;
+            loadingDiv.style.display = 'none';
+
+            // Rendre chaque page
+            for (let i = 1; i <= pdf.numPages; i++) {
+                const page = await pdf.getPage(i);
+                const scale = Math.min(
+                    (document.getElementById('cv-viewer-wrap').clientWidth - 40) / page.getViewport({ scale: 1 }).width,
+                    2
+                );
+                const viewport = page.getViewport({ scale });
+                const canvas = document.createElement('canvas');
+                canvas.width  = viewport.width;
+                canvas.height = viewport.height;
+                await page.render({ canvasContext: canvas.getContext('2d'), viewport }).promise;
+                pagesDiv.appendChild(canvas);
+            }
+            cvLoaded = true;
+
+        } catch (err) {
+            console.warn('PDF.js error:', err);
+            loadingDiv.style.display = 'none';
+            errorDiv.style.display   = 'block';
+        }
     }
     function closeCvModal() {
         document.getElementById('cv-modal').classList.remove('open');
@@ -1673,12 +1720,30 @@
                     </button>
                 </div>
             </div>
-            <iframe
-                class="cv-modal-frame"
-                id="cv-iframe"
-                src=""
-                title="CV Rayan ROUIS"
-            ></iframe>
+            <div id="cv-viewer-wrap" style="
+                flex:1; overflow-y:auto; background:#1a1a2e;
+                display:flex; flex-direction:column; align-items:center;
+                padding:1.5rem 1rem; gap:1rem;
+            ">
+                <div id="cv-loading" style="
+                    color:var(--cyan); font-family:'JetBrains Mono',monospace;
+                    font-size:0.85rem; padding:3rem; text-align:center;
+                ">
+                    <i class="fas fa-spinner fa-spin" style="font-size:2rem;margin-bottom:1rem;display:block;"></i>
+                    Chargement du CV...
+                </div>
+                <div id="cv-pages"></div>
+                <div id="cv-error" style="display:none; color:var(--text-dim);
+                    font-family:'JetBrains Mono',monospace; font-size:0.85rem;
+                    text-align:center; padding:2rem;">
+                    <i class="fas fa-triangle-exclamation" style="color:#fbbf24;font-size:2rem;display:block;margin-bottom:1rem;"></i>
+                    Aperçu non disponible en local.<br><br>
+                    <a href="CV_Rayan_Rouis-1.pdf" target="_blank"
+                       style="color:var(--cyan);text-decoration:none;border-bottom:1px solid var(--cyan);">
+                       <i class="fas fa-arrow-up-right-from-square"></i> Ouvrir dans un nouvel onglet
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 
