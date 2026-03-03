@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page de Test - MICHOU</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #020617 0%, #1e293b 100%);
+            color: #e5e7eb;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+        }
+        .container {
+            max-width: 800px;
+            padding: 2rem;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .card {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 1rem 0;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: #3b82f6;
+            box-shadow: 0 30px 60px rgba(59, 130, 246, 0.2);
+        }
+        .btn {
+            background: linear-gradient(45deg, #3b82f6, #1d4ed8);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            cursor: pointer;
+            margin: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4);
+        }
+        #output {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: rgba(0,0,0,0.5);
+            border-radius: 10px;
+            min-height: 50px;
+        }
+        @media (max-width: 768px) {
+            .container { padding: 1rem; }
+            h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Page de Test OK !</h1>
+        <div class="card">
+            <p>Design responsive, hover effects, et boutons interactifs. Parfait pour tester tes UIs FiveM ou dashboards.</p>
+            <button class="btn" onclick="testClick()">Clique-moi !</button>
+            <button class="btn" onclick="randomColor()">Couleur aléatoire</button>
+            <button class="btn" onclick="clearOutput()">Reset</button>
+            <div id="output">Résultat ici...</div>
+        </div>
+    </div>
+
+    <script>
+        function testClick() {
+            document.getElementById('output').innerHTML = '✅ Test réussi ! Heure: ' + new Date().toLocaleTimeString();
+        }
+        function randomColor() {
+            const colors = ['#ef4444', '#10b981', '#f59e0b', '#8b5cf6'];
+            document.body.style.background = `linear-gradient(135deg, ${colors[Math.floor(Math.random()*4)]} 0%, #1e293b 100%)`;
+            document.getElementById('output').innerHTML = '🎨 Couleur changée !';
+        }
+        function clearOutput() {
+            document.getElementById('output').innerHTML = 'Reset OK.';
+            document.body.style.background = 'linear-gradient(135deg, #020617 0%, #1e293b 100%)';
+        }
+    </script>
+</body>
+</html>
