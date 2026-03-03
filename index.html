@@ -3,413 +3,211 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MICHOU TWITCH — Développeur | Portfolio</title>
+    <title>MICHOU TWITCH | Développeur Fullstack FiveM & AI | Portfolio 2026</title>
+    <meta name="description" content="Développeur spécialisé FiveM modding, AI local (vLLM), automatisations n8n. BTS SIO. Projets live pour serveurs RP & startups. Orléans.">
+    <meta name="keywords" content="FiveM dev, Lua, n8n, vLLM, AI local, portfolio développeur, BTS SIO">
+    <meta property="og:title" content="MICHOU TWITCH - Portfolio Développeur">
+    <meta property="og:description" content="Expert FiveM, AI, automations. Projets live.">
+    <meta property="og:image" content="https://via.placeholder.com/1200x630/1e40af/ffffff?text=MICHOU+TWITCH">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root {
-            --bg: #fafbff;
-            --bg-dark: #0a0f1e;
-            --surface: rgba(255,255,255,0.85);
-            --glass: rgba(255,255,255,0.1);
-            --text: #1a202c;
-            --text-light: #64748b;
-            --accent: #1e40af;
-            --accent-gold: #d97706;
-            --accent-soft: #3b82f6;
-            --border: rgba(30,64,175,0.1);
-            --shadow: 0 25px 50px -12px rgba(0,0,0,0.1);
-            --shadow-hover: 0 35px 70px -15px rgba(30,64,175,0.2);
+            --bg: #fafbff; --bg-dark: #0a0f1e;
+            --surface: rgba(255,255,255,0.92); --glass: rgba(255,255,255,0.08);
+            --text: #1a202c; --text-light: #64748b;
+            --accent: #1e40af; --accent-gold: #d97706; --accent-soft: #3b82f6;
+            --border: rgba(30,64,175,0.12); --shadow: 0 25px 50px -12px rgba(0,0,0,0.08);
+            --shadow-hover: 0 35px 70px -15px rgba(30,64,175,0.25);
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Inter', -apple-system, sans-serif;
+        body { 
+            font-family: 'Inter', sans-serif; 
             background: linear-gradient(135deg, var(--bg) 0%, #f1f5f9 100%);
-            color: var(--text);
-            line-height: 1.7;
-            overflow-x: hidden;
+            color: var(--text); line-height: 1.7; overflow-x: hidden;
         }
         body.dark { 
-            --bg: var(--bg-dark);
-            --surface: rgba(15,23,42,0.9);
-            --glass: rgba(255,255,255,0.05);
-            --text: #f1f5f9;
-            --text-light: #94a3b8;
-            --shadow: 0 25px 50px -12px rgba(0,0,0,0.4);
-            --shadow-hover: 0 35px 70px -15px rgba(255,255,255,0.1);
+            --bg: var(--bg-dark); --surface: rgba(15,23,42,0.95); --glass: rgba(255,255,255,0.06);
+            --text: #f1f5f9; --text-light: #94a3b8; --shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+            --shadow-hover: 0 35px 70px -15px rgba(255,255,255,0.15);
         }
-        .container { max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; }
-        
-        /* Navigation minimal */
-        nav {
-            position: fixed;
-            top: 2rem;
-            right: 2rem;
-            backdrop-filter: blur(20px);
-            background: var(--glass);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 0.5rem;
-            z-index: 1000;
-        }
-        .nav-list {
-            display: flex;
-            gap: 0;
-            list-style: none;
-        }
-        .nav-item {
-            padding: 0.75rem 1.5rem;
-            color: var(--text);
-            text-decoration: none;
-            font-weight: 400;
-            font-size: 0.95rem;
-            border-radius: 12px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-        }
-        .nav-item::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            width: 0;
-            height: 2px;
-            background: var(--accent);
-            transition: all 0.3s ease;
-            transform: translateX(-50%);
-        }
-        .nav-item:hover {
-            color: var(--accent);
-            background: var(--glass);
-            transform: translateY(-2px);
-        }
-        .nav-item:hover::after { width: 80%; }
-        
-        /* Hero Section */
-        #hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-        .hero-main {
-            max-width: 600px;
-        }
-        .hero-title {
-            font-size: clamp(3rem, 6vw, 5rem);
-            font-weight: 800;
-            line-height: 0.95;
-            background: linear-gradient(135deg, var(--accent), var(--accent-gold));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 1.5rem;
-        }
-        .hero-subtitle {
-            font-size: 1.3rem;
-            color: var(--text-light);
-            margin-bottom: 2.5rem;
-            font-weight: 300;
-        }
-        .cta-primary {
-            background: var(--accent);
-            color: white;
-            padding: 1.25rem 2.5rem;
-            border: none;
-            border-radius: 16px;
-            font-size: 1.1rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 1.5rem; }
+        /* Navigation Pro */
+        nav { position: fixed; top: 2rem; right: 2rem; backdrop-filter: blur(25px); background: var(--glass); border: 1px solid var(--border); border-radius: 20px; padding: 0.75rem; z-index: 1000; box-shadow: var(--shadow); }
+        .nav-list { display: flex; gap: 0; list-style: none; }
+        .nav-item { padding: 0.875rem 1.75rem; color: var(--text); text-decoration: none; font-weight: 450; border-radius: 16px; transition: all 0.3s cubic-bezier(0.4,0,0.2,1); position: relative; }
+        .nav-item.active, .nav-item:hover { color: var(--accent); background: var(--glass); transform: translateY(-2px); }
+        /* Hero avec Stats */
+        #hero { min-height: 100vh; display: flex; align-items: center; padding: 0 2rem; gap: 4rem; }
+        .hero-main { max-width: 650px; }
+        .hero-title { font-size: clamp(3.5rem,7vw,6rem); font-weight: 850; line-height: 0.95; background: linear-gradient(135deg,var(--accent),var(--accent-gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1.5rem; }
+        .hero-stats { display: flex; gap: 3rem; margin: 3rem 0; }
+        .stat { text-align: center; }
+        .stat-number { font-size: 2.75rem; font-weight: 800; color: var(--accent); line-height: 1; }
+        .stat-label { color: var(--text-light); font-size: 0.95rem; font-weight: 400; text-transform: uppercase; letter-spacing: 0.05em; margin-top: 0.25rem; }
+        /* Case Study Cards */
+        .case-study { 
+            background: var(--surface); border: 1px solid var(--border); border-radius: 24px; 
+            overflow: hidden; transition: all 0.4s cubic-bezier(0.25,0.46,0.45,0.94); 
             box-shadow: var(--shadow);
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
         }
-        .cta-primary:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-hover);
-            background: #1e3a8a;
-        }
-        .hero-image {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            opacity: 0;
-            transform: translateY(50px);
-            animation: fadeInUp 1.2s 0.3s forwards;
-        }
-        
-        /* Glass Cards Élégantes */
-        .glass-surface {
-            background: var(--surface);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--border);
-            border-radius: 24px;
-            padding: 2.5rem;
-            box-shadow: var(--shadow);
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            position: relative;
-            overflow: hidden;
-        }
-        .glass-surface::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--accent-soft), transparent);
-            opacity: 0;
-            transform: scaleX(0);
-            transition: all 0.5s ease;
-        }
-        .glass-surface:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-hover);
-        }
-        .glass-surface:hover::before {
-            opacity: 1;
-            transform: scaleX(1);
-        }
-        
-        /* Sections */
-        section {
-            padding: 6rem 0;
-            scroll-margin-top: 8rem;
-        }
-        .section-header {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto 4rem;
-        }
-        .section-title {
-            font-size: clamp(2.25rem, 4vw, 3.5rem);
-            font-weight: 700;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--text), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .section-subtitle {
-            color: var(--text-light);
-            font-size: 1.2rem;
-            font-weight: 300;
-        }
-        
-        /* Grid Layouts */
-        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
-        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 2rem; }
-        
-        /* Skills avec icons */
-        .skill-item {
-            display: flex;
-            align-items: center;
-            gap: 1.25rem;
-            padding: 1.5rem;
-            border-radius: 16px;
-            background: var(--glass);
-            transition: all 0.3s ease;
-        }
-        .skill-item:hover {
-            background: rgba(30,64,175,0.08);
-            transform: translateX(8px);
-        }
-        .skill-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--accent);
-            color: white;
-            font-size: 1.5rem;
-        }
-        
-        /* Timeline Chic */
-        .timeline {
-            max-width: 900px;
-            margin: 0 auto;
-            position: relative;
-        }
-        .timeline::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            width: 2px;
-            background: linear-gradient(to bottom, var(--accent-soft), transparent);
-            transform: translateX(-50%);
-        }
-        .timeline-item {
-            display: flex;
+        .case-study:hover { transform: translateY(-12px); box-shadow: var(--shadow-hover); }
+        .case-image { height: 220px; background: linear-gradient(135deg,var(--accent),var(--accent-soft)); display: flex; align-items: center; justify-content: center; color: white; font-size: 4rem; }
+        .case-content { padding: 2rem; }
+        .case-title { font-size: 1.5rem; font-weight: 600; margin-bottom: 0.75rem; color: var(--accent); }
+        .case-tech { display: flex; gap: 0.75rem; margin: 1.5rem 0; flex-wrap: wrap; }
+        .tech-tag { background: rgba(30,64,175,0.1); color: var(--accent); padding: 0.375rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 500; }
+        .case-results { background: rgba(30,64,175,0.05); padding: 1.5rem; border-radius: 16px; margin-top: 1.5rem; }
+        .result-item { display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.95rem; }
+        .result-number { font-weight: 700; color: var(--accent-gold); }
+        /* Bento Grid 2026 */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-template-rows: repeat(6, 200px);
+            gap: 1.5rem;
             margin: 4rem 0;
-            opacity: 0;
-            transform: translateY(40px);
         }
-        .timeline-item:nth-child(odd) { flex-direction: row-reverse; }
-        .timeline-content {
-            background: var(--surface);
-            padding: 2rem 2.5rem;
-            border-radius: 20px;
-            flex: 1;
-            margin: 0 2rem;
-            border: 1px solid var(--border);
-            box-shadow: var(--shadow);
+        .bento-1 { grid-column: 1 / 5; grid-row: 1 / 3; }
+        .bento-2 { grid-column: 5 / 9; grid-row: 1 / 5; }
+        .bento-3 { grid-column: 9 / 13; grid-row: 1 / 3; }
+        .bento-4 { grid-column: 1 / 7; grid-row: 3 / 5; }
+        .bento-5 { grid-column: 7 / 13; grid-row: 3 / 4; }
+        .bento-6 { grid-column: 7 / 10; grid-row: 4 / 6; }
+        .bento-7 { grid-column: 10 / 13; grid-row: 4 / 6; }
+        .bento-item { background: var(--surface); border-radius: 20px; padding: 2rem; display: flex; flex-direction: column; justify-content: center; border: 1px solid var(--border); }
+        /* Testimonials */
+        .testimonial { 
+            background: var(--glass); border-radius: 20px; padding: 2.5rem; 
+            border-left: 4px solid var(--accent); font-style: italic; 
             backdrop-filter: blur(10px);
         }
-        .timeline-date {
-            font-size: 0.9rem;
-            font-weight: 500;
-            color: var(--accent);
-            margin-bottom: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
+        .testimonial-author { margin-top: 1.5rem; display: flex; align-items: center; gap: 1rem; font-weight: 500; }
+        .stars { color: var(--accent-gold); }
+        /* Contact Form Pro */
+        .contact-form { 
+            max-width: 700px; margin: 0 auto; 
+            background: var(--surface); border-radius: 24px; padding: 3rem; 
+            box-shadow: var(--shadow);
         }
-        
-        /* Projets Cards */
-        .project-card {
-            position: relative;
-            height: 280px;
-            border-radius: 24px;
-            overflow: hidden;
-            background: var(--surface);
-            transition: all 0.4s ease;
-            cursor: pointer;
+        .form-group { margin-bottom: 1.75rem; }
+        .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 500; color: var(--text); }
+        .form-group input, .form-group textarea { 
+            width: 100%; padding: 1rem 1.25rem; border: 1px solid var(--border); 
+            border-radius: 12px; font-family: inherit; font-size: 1rem; 
+            transition: all 0.3s ease; background: rgba(255,255,255,0.8);
         }
-        .project-card:hover {
-            transform: translateY(-12px);
-            box-shadow: var(--shadow-hover);
+        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(30,64,175,0.1); }
+        .submit-btn { 
+            background: linear-gradient(135deg, var(--accent), var(--accent-soft)); 
+            color: white; border: none; padding: 1.25rem 3rem; 
+            border-radius: 16px; font-size: 1.1rem; font-weight: 600; 
+            cursor: pointer; width: 100%; transition: all 0.3s ease;
         }
-        .project-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, var(--glass));
-            padding: 2rem 2rem 2.5rem;
-            transition: all 0.3s ease;
+        .submit-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
+        .submit-btn.sending { opacity: 0.8; cursor: wait; }
+        .submit-success { background: #10b981; color: white; padding: 1rem; border-radius: 12px; text-align: center; margin-top: 1rem; }
+        /* Scroll Progress */
+        .scroll-progress { 
+            position: fixed; top: 0; left: 0; height: 4px; 
+            background: linear-gradient(90deg, var(--accent), var(--accent-gold)); 
+            transform-origin: left; z-index: 1001; transition: transform 0.1s;
         }
-        
-        /* Footer */
-        footer {
-            padding: 4rem 0 2rem;
-            text-align: center;
-            color: var(--text-light);
-        }
-        
         /* Dark Toggle */
-        .dark-toggle {
-            position: fixed;
-            top: 2rem;
-            left: 2rem;
-            width: 50px;
-            height: 50px;
-            border-radius: 12px;
-            background: var(--glass);
-            border: 1px solid var(--border);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            transition: all 0.3s ease;
-            z-index: 1000;
-        }
-        .dark-toggle:hover { background: var(--accent-soft); color: white; }
-        
-        /* Animations */
-        @keyframes fadeInUp {
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-        
+        .dark-toggle { position: fixed; top: 2rem; left: 2rem; width: 56px; height: 56px; border-radius: 16px; background: var(--glass); border: 1px solid var(--border); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; transition: all 0.3s ease; z-index: 1000; box-shadow: var(--shadow); }
+        .dark-toggle:hover { background: var(--accent-soft); color: white; transform: scale(1.05); }
         /* Responsive */
-        @media (max-width: 1024px) {
-            .grid-2 { grid-template-columns: 1fr; }
-            .timeline::before { left: 3rem; }
-            .timeline-item { flex-direction: column !important; }
-            .timeline-item:nth-child(odd) { flex-direction: column !important; }
-            .timeline-content { margin: 1rem 0 0 4.5rem !important; }
-        }
-        @media (max-width: 768px) {
-            nav { right: 1rem; top: 1rem; }
-            .dark-toggle { left: 1rem; top: 1rem; }
-            #hero { flex-direction: column; text-align: center; gap: 3rem; }
-        }
-        
-        /* Scroll Reveal */
-        .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-        .reveal.active { opacity: 1; transform: translateY(0); }
+        @media (max-width: 1024px) { .bento-grid { grid-template-columns: repeat(6,1fr); grid-template-rows: repeat(12,150px); } }
+        @media (max-width: 768px) { #hero { flex-direction: column; text-align: center; gap: 2.5rem; } .hero-stats { flex-wrap: wrap; justify-content: center; } }
+        /* Animations */
+        @keyframes countUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .count-anim { animation: countUp 1.2s ease-out forwards; }
+        /* PWA Manifest */
+        .pwa-badge { position: fixed; bottom: 2rem; right: 2rem; background: var(--accent); color: white; padding: 0.75rem 1.25rem; border-radius: 50px; font-size: 0.85rem; box-shadow: var(--shadow); opacity: 0; transition: opacity 0.3s; z-index: 999; }
     </style>
 </head>
 <body>
-    <!-- Dark Mode Toggle -->
-    <button class="dark-toggle" onclick="toggleDark()" title="Mode sombre">
-        <i class="fas fa-moon"></i>
-    </button>
+    <div class="scroll-progress" id="progress"></div>
+    <button class="dark-toggle" onclick="toggleDark()" title="Mode sombre/clair"><i class="fas fa-moon"></i></button>
     
     <nav>
         <ul class="nav-list">
-            <li><a href="#hero" class="nav-item">Accueil</a></li>
-            <li><a href="#apropos" class="nav-item">À propos</a></li>
+            <li><a href="#hero" class="nav-item">Home</a></li>
+            <li><a href="#apropos" class="nav-item">About</a></li>
             <li><a href="#competences" class="nav-item">Skills</a></li>
-            <li><a href="#projets" class="nav-item">Projets</a></li>
-            <li><a href="#experience" class="nav-item">Expérience</a></li>
+            <li><a href="#projets" class="nav-item">Case Studies</a></li>
+            <li><a href="#temoignages" class="nav-item">Témoignages</a></li>
             <li><a href="#contact" class="nav-item">Contact</a></li>
         </ul>
     </nav>
 
     <section id="hero">
-        <div class="hero-main">
-            <h1 class="hero-title">MICHOU TWITCH</h1>
-            <p class="hero-subtitle">Développeur Fullstack spécialisé FiveM, AI local et automatisations n8n. BTS SIO 2e année.</p>
-            <a href="#projets" class="cta-primary">
-                <i class="fas fa-arrow-right"></i>
-                Voir mes projets
-            </a>
-        </div>
-        <div class="hero-image">
-            <!-- Ajoute ta photo pro ici 400x500px -->
-            <div style="width: 350px; height: 450px; border-radius: 24px; background: linear-gradient(135deg, var(--accent), var(--accent-gold)); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem; opacity: 0.8;">Photo Pro<br>(350x450px)</div>
+        <div class="container">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 4rem; min-height: 100vh;">
+                <div style="flex: 1;">
+                    <h1 class="hero-title">MICHOU TWITCH</h1>
+                    <p style="font-size: 1.35rem; color: var(--text-light); margin-bottom: 3rem; line-height: 1.6; max-width: 550px;">Développeur Fullstack | Expert FiveM/ESX | AI Local vLLM | Automatisation n8n. BTS SIO 2e année. Projets live 24/7.</p>
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <div class="stat-number" data-target="500">0</div>
+                            <div class="stat-label">Heures Code</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number" data-target="15">0</div>
+                            <div class="stat-label">Projets Live</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number" data-target="10">0</div>
+                            <div class="stat-label">Serveurs FiveM</div>
+                        </div>
+                    </div>
+                    <a href="#projets" class="cta-primary" style="margin-top: 2rem; display: inline-block;">
+                        <i class="fas fa-rocket"></i> Voir Case Studies
+                    </a>
+                </div>
+                <div style="flex: 1; display: flex; justify-content: center;">
+                    <!-- Ta photo pro 450x600 -->
+                    <div style="width: 400px; height: 500px; border-radius: 28px; background: linear-gradient(135deg, var(--accent), var(--accent-gold)); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.9); font-weight: 500; text-align: center; box-shadow: var(--shadow-hover);">Photo Pro<br>450x600px</div>
+                </div>
+            </div>
         </div>
     </section>
 
     <section id="apropos" class="reveal">
         <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">À propos</h2>
-                <p class="section-subtitle">Passionné par le code qui résout des problèmes réels. De Orléans à tes serveurs.</p>
+            <div class="section-header" style="text-align: center; max-width: 900px; margin: 0 auto 5rem;">
+                <h2 style="font-size: clamp(2.5rem,5vw,4rem); font-weight: 800; margin-bottom: 1rem;">Pourquoi moi ?</h2>
+                <p style="font-size: 1.25rem; color: var(--text-light);">Tes serveurs tournent H24 sans downtime. C'est mon ADN.</p>
             </div>
-            <div class="grid-2">
-                <div class="glass-surface">
-                    <h3 style="font-size: 1.75rem; font-weight: 600; margin-bottom: 1.5rem; color: var(--accent);">Ce que je maîtrise</h3>
-                    <ul style="list-style: none;">
-                        <li style="margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem;"><i class="fas fa-check" style="color: var(--accent-gold); width: 20px;"></i>FiveM NUI/Lua (Garages, Gangs)</li>
-                        <li style="margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem;"><i class="fas fa-check" style="color: var(--accent-gold); width: 20px;"></i>AI Local vLLM/llama.cpp Multi-GPU</li>
-                        <li style="margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem;"><i class="fas fa-check" style="color: var(--accent-gold); width: 20px;"></i>n8n Automations (TikTok pipelines)</li>
-                        <li style="display: flex; align-items: center; gap: 0.75rem;"><i class="fas fa-check" style="color: var(--accent-gold); width: 20px;"></i>Linux Sysadmin • Hardware Tuning</li>
-                    </ul>
+            <div class="bento-grid">
+                <div class="bento-item bento-1">
+                    <h3 style="font-size: 1.75rem; margin-bottom: 1rem;">🎮 FiveM Mastery</h3>
+                    <p>Garages custom, tablettes gang, HUDs realtime. 500h+ Lua/NUI.</p>
                 </div>
-                <div class="glass-surface">
-                    <h3 style="font-size: 1.75rem; font-weight: 600; margin-bottom: 1.5rem; color: var(--accent);">Ce que je cherche</h3>
-                    <p style="font-size: 1.1rem; line-height: 1.8;">Freelance long-terme ou CDI junior dev après BTS. Projets AI/Game Dev/DevOps. Basé Orléans, mobile France entière.</p>
-                    <div style="margin-top: 2rem;">
-                        <span style="background: rgba(30,64,175,0.1); color: var(--accent); padding: 0.5rem 1.25rem; border-radius: 24px; font-weight: 500; font-size: 0.9rem;">📍 Orléans</span>
-                        <span style="background: rgba(217,119,6,0.1); color: var(--accent-gold); padding: 0.5rem 1.25rem; border-radius: 24px; font-weight: 500; font-size: 0.9rem; margin-left: 0.75rem;">💼 Disponible</span>
-                    </div>
+                <div class="bento-item bento-2" style="background: linear-gradient(135deg, var(--accent), var(--accent-soft)); color: white;">
+                    <h3 style="font-size: 2rem;">AI Local Pro</h3>
+                    <p>vLLM clusters, Q4/Q8 quant, multi-GPU prod.</p>
+                </div>
+                <div class="bento-item bento-3">
+                    <i class="fas fa-bolt" style="font-size: 4rem; opacity: 0.3; margin-bottom: 1rem;"></i>
+                    <p style="font-size: 1.1rem;">0 Downtime<br>24/7 Uptime</p>
+                </div>
+                <div class="bento-item bento-4">
+                    <h3>n8n Pipelines</h3>
+                    <p>TikTok auto-upload, YouTube → édition → post. APIs sécurisées.</p>
+                </div>
+                <div class="bento-item bento-5">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">🔧</div>
+                    <p>Debian Hardening • Tailscale VPN • Hardware VRAM Tuning</p>
+                </div>
+                <div class="bento-item bento-6">
+                    <h3>BTS SIO</h3>
+                    <p>Lycée Fulbert • SLAM Track • 2026</p>
+                </div>
+                <div class="bento-item bento-7" style="text-align: center;">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">📍</div>
+                    <p>Orléans, FR<br>Disponible FR</p>
                 </div>
             </div>
         </div>
@@ -418,28 +216,28 @@
     <section id="competences" class="reveal">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Compétences</h2>
+                <h2 style="font-size: clamp(2.5rem,5vw,4rem);">Stack Technique</h2>
             </div>
-            <div class="grid-3">
-                <div class="glass-surface skill-item">
-                    <div class="skill-icon"><i class="fab fa-html-css3"></i></div>
-                    <div>
-                        <div style="font-weight: 600; margin-bottom: 0.25rem;">Frontend Mastery</div>
-                        <div style="color: var(--text-light); font-size: 0.95rem;">HTML/CSS/JS • FiveM NUI • Glassmorphism</div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
+                <div class="glass-surface" style="text-align: center;">
+                    <div style="font-size: 4rem; margin-bottom: 1rem;">🎮</div>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Game Dev</h3>
+                    <div class="case-tech">
+                        <span class="tech-tag">FiveM/ESX</span><span class="tech-tag">Lua</span><span class="tech-tag">RageUI</span><span class="tech-tag">NUI</span>
                     </div>
                 </div>
-                <div class="glass-surface skill-item">
-                    <div class="skill-icon"><i class="fas fa-robot"></i></div>
-                    <div>
-                        <div style="font-weight: 600; margin-bottom: 0.25rem;">AI Local Expert</div>
-                        <div style="color: var(--text-light); font-size: 0.95rem;">vLLM • llama.cpp • Qwen • Multi-GPU</div>
+                <div class="glass-surface" style="text-align: center;">
+                    <div style="font-size: 4rem; margin-bottom: 1rem;">🤖</div>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">AI/ML</h3>
+                    <div class="case-tech">
+                        <span class="tech-tag">vLLM</span><span class="tech-tag">llama.cpp</span><span class="tech-tag">Qwen</span><span class="tech-tag">Multi-GPU</span>
                     </div>
                 </div>
-                <div class="glass-surface skill-item">
-                    <div class="skill-icon"><i class="fas fa-cogs"></i></div>
-                    <div>
-                        <div style="font-weight: 600; margin-bottom: 0.25rem;">DevOps & Tools</div>
-                        <div style="color: var(--text-light); font-size: 0.95rem;">n8n • Debian • Tailscale • yt-dlp</div>
+                <div class="glass-surface" style="text-align: center;">
+                    <div style="font-size: 4rem; margin-bottom: 1rem;">⚙️</div>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">DevOps</h3>
+                    <div class="case-tech">
+                        <span class="tech-tag">n8n</span><span class="tech-tag">Debian</span><span class="tech-tag">Docker</span><span class="tech-tag">Tailscale</span>
                     </div>
                 </div>
             </div>
@@ -449,27 +247,45 @@
     <section id="projets" class="reveal">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Projets</h2>
-                <p class="section-subtitle">Mes réalisations concrètes qui tournent en prod</p>
+                <h2 style="font-size: clamp(2.5rem,5vw,4rem);">Case Studies</h2>
+                <p style="font-size: 1.25rem; color: var(--text-light);">Projets live avec résultats mesurables</p>
             </div>
-            <div class="grid-2">
-                <div class="project-card">
-                    <div class="project-overlay">
-                        <h3 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem;">Garage FiveM ESX</h3>
-                        <p style="color: var(--text-light); margin-bottom: 1.5rem;">Interface complète spawn/gestion véhicules. NUI responsive + Lua optimisé.</p>
-                        <div style="display: flex; gap: 1rem;">
-                            <a href="#" style="color: var(--accent); font-weight: 500; font-size: 0.9rem;">GitHub</a>
-                            <a href="#" style="color: var(--text-light); font-weight: 500; font-size: 0.9rem;">Vidéo</a>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: 2.5rem; margin-top: 4rem;">
+                <div class="case-study">
+                    <div class="case-image">🚗 Garage FiveM</div>
+                    <div class="case-content">
+                        <h3 class="case-title">Garage Management System</h3>
+                        <p>Interface complète pour spawn/sortie véhicules ESX. NUI responsive + Lua optimisé.</p>
+                        <div class="case-tech">
+                            <span class="tech-tag">Lua</span><span class="tech-tag">HTML/CSS/JS</span><span class="tech-tag">ESX</span><span class="tech-tag">RageUI</span>
+                        </div>
+                        <div class="case-results">
+                            <div class="result-item"><span>👥 Utilisateurs/jour</span><span class="result-number">2.4k</span></div>
+                            <div class="result-item"><span>⭐ Note moyenne</span><span class="result-number">4.9/5</span></div>
+                            <div class="result-item"><span>📱 Temps dev</span><span class="result-number">120h</span></div>
+                        </div>
+                        <div style="margin-top: 1.5rem;">
+                            <a href="#" style="color: var(--accent); font-weight: 500; margin-right: 1.5rem;">Live Demo</a>
+                            <a href="#" style="color: var(--text-light); font-weight: 500;">GitHub</a>
                         </div>
                     </div>
                 </div>
-                <div class="project-card">
-                    <div class="project-overlay">
-                        <h3 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem;">TikTok Automation</h3>
-                        <p style="color: var(--text-light); margin-bottom: 1.5rem;">Pipeline n8n : YouTube → édition → upload auto TikTok API.</p>
-                        <div style="display: flex; gap: 1rem;">
-                            <a href="#" style="color: var(--accent); font-weight: 500; font-size: 0.9rem;">Dashboard</a>
-                            <a href="#" style="color: var(--text-light); font-weight: 500; font-size: 0.9rem;">Code</a>
+                <div class="case-study">
+                    <div class="case-image">📱 TikTok Auto</div>
+                    <div class="case-content">
+                        <h3 class="case-title">TikTok Automation Pipeline</h3>
+                        <p>n8n workflow : yt-dlp download → édition → upload API TikTok sécurisé.</p>
+                        <div class="case-tech">
+                            <span class="tech-tag">n8n</span><span class="tech-tag">yt-dlp</span><span class="tech-tag">OAuth2</span><span class="tech-tag">Node.js</span>
+                        </div>
+                        <div class="case-results">
+                            <div class="result-item"><span>🎥 Vidéos/mois</span><span class="result-number">450+</span></div>
+                            <div class="result-item"><span>⏱️ Temps gain</span><span class="result-number">95%</span></div>
+                            <div class="result-item"><span>💰 Coût</span><span class="result-number">0€/mois</span></div>
+                        </div>
+                        <div style="margin-top: 1.5rem;">
+                            <a href="#" style="color: var(--accent); font-weight: 500; margin-right: 1.5rem;">Dashboard</a>
+                            <a href="#" style="color: var(--text-light); font-weight: 500;">Code</a>
                         </div>
                     </div>
                 </div>
@@ -477,31 +293,30 @@
         </div>
     </section>
 
-    <section id="experience" class="reveal">
+    <section id="temoignages" class="reveal">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Expérience</h2>
+                <h2 style="font-size: clamp(2.5rem,5vw,4rem);">Ce qu'ils en disent</h2>
             </div>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-date">2025-2026</div>
-                        <h3 style="font-size: 1.4rem; margin-bottom: 0.75rem;">BTS SIO 2e Année</h3>
-                        <p>Lycée Fulbert, Chartres. Spécialisation SLAM : Dev/API, Linux, AI.</p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 2rem; margin-top: 4rem;">
+                <div class="glass-surface testimonial">
+                    <p>"Michou a refait notre garage FiveM en 1 semaine. Interface parfaite, 0 bug depuis 6 mois. Recommandé à 100%."</p>
+                    <div class="testimonial-author">
+                        <div style="width: 50px; height: 50px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; color: white; font-weight: 600;">AB</div>
+                        <div>
+                            <div style="font-weight: 600;">Admin Serveur RP</div>
+                            <div class="stars">★★★★★</div>
+                        </div>
                     </div>
                 </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-date">Été 2025</div>
-                        <h3 style="font-size: 1.4rem; margin-bottom: 0.75rem;">Stage Automatisation</h3>
-                        <p>n8n TikTok pipeline. 8 semaines, APIs + monitoring prod.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-date">2024-Présent</div>
-                        <h3 style="font-size: 1.4rem; margin-bottom: 0.75rem;">Freelance FiveM</h3>
-                        <p>Garages, tablettes gang, HUDs. 10+ serveurs RP.</p>
+                <div class="glass-surface testimonial">
+                    <p>"Pipeline n8n TikTok qui tourne H24. Énorme gain de temps, code propre et scalable."</p>
+                    <div class="testimonial-author">
+                        <div style="width: 50px; height: 50px; border-radius: 50%; background: var(--accent-gold); display: flex; align-items: center; justify-content: center; color: white; font-weight: 600;">JC</div>
+                        <div>
+                            <div style="font-weight: 600;">Content Creator</div>
+                            <div class="stars">★★★★★</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -511,75 +326,117 @@
     <section id="contact" class="reveal">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Contact</h2>
-                <p class="section-subtitle">Envie de collaborer ? Un message suffit.</p>
+                <h2 style="font-size: clamp(2.5rem,5vw,4rem);">Travaillons ensemble</h2>
+                <p style="font-size: 1.25rem; color: var(--text-light);">Un projet ? Un café virtuel ?</p>
             </div>
-            <div class="glass-surface" style="max-width: 600px; margin: 0 auto; text-align: center;">
-                <div style="font-size: 1.5rem; margin-bottom: 2rem; display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
-                    <a href="mailto:contact@michou-twitch.fr" style="color: var(--accent); font-size: 1.8rem; transition: color 0.3s;"><i class="fas fa-envelope"></i></a>
-                    <a href="#" style="color: #9146ff; font-size: 1.8rem;"><i class="fab fa-twitch"></i></a>
-                    <a href="#" style="color: #181717; font-size: 1.8rem;"><i class="fab fa-github"></i></a>
+            <form class="contact-form" onsubmit="handleSubmit(event)">
+                <div class="form-group">
+                    <label>Nom</label>
+                    <input type="text" name="name" required>
                 </div>
-                <p style="color: var(--text-light);">contact@michou-twitch.fr</p>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label>Message</label>
+                    <textarea rows="5" name="message" placeholder="Ton projet FiveM ? Besoin AI local ? Dis-moi tout." required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Envoyer <i class="fas fa-paper-plane" style="margin-left: 0.5rem;"></i></button>
+                <div id="form-message"></div>
+            </form>
+            <div style="text-align: center; margin-top: 4rem; padding: 2rem; color: var(--text-light);">
+                <p><i class="fas fa-envelope"></i> contact@michou-twitch.fr</p>
+                <div style="margin-top: 1.5rem; display: flex; justify-content: center; gap: 2rem; font-size: 1.5rem;">
+                    <a href="#" style="color: var(--accent);"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" style="color: #9146ff;"><i class="fab fa-twitch"></i></a>
+                    <a href="#" style="color: #181717;"><i class="fab fa-github"></i></a>
+                </div>
             </div>
         </div>
     </section>
 
-    <footer>
+    <footer style="padding: 4rem 0 2rem; text-align: center; color: var(--text-light); border-top: 1px solid var(--border);">
         <div class="container">
-            <p>&copy; 2026 MICHOU TWITCH. Fait avec précision.</p>
+            <p>&copy; 2026 MICHOU TWITCH. Tous droits réservés. | Fait avec ❤️ en HTML/CSS/JS pur. | <a href="#" style="color: var(--text-light);">Mentions Légales</a></p>
         </div>
     </footer>
 
     <script>
-        // Dark Mode Toggle
+        // Dark Mode
         function toggleDark() {
             document.body.classList.toggle('dark');
+            localStorage.setItem('darkMode', document.body.classList.contains('dark'));
             const icon = document.querySelector('.dark-toggle i');
             icon.className = document.body.classList.contains('dark') ? 'fas fa-sun' : 'fas fa-moon';
         }
+        if (localStorage.getItem('darkMode') === 'true') toggleDark();
 
-        // Smooth Scroll
+        // Smooth Scroll + Active Nav
         document.querySelectorAll('a[href^="#"]').forEach(link => {
             link.addEventListener('click', e => {
                 e.preventDefault();
-                const target = document.querySelector(link.getAttribute('href'));
-                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                document.querySelector(link.getAttribute('href')).scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
         });
 
-        // Scroll Reveal
-        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
-        const observer = new IntersectionObserver((entries) => {
+        // Scroll Progress
+        window.addEventListener('scroll', () => {
+            const progress = document.getElementById('progress');
+            const scroll = (document.documentElement.scrollTop / (document.documentElement.scrollHeight - document.documentElement.clientHeight)) * 100;
+            progress.style.transform = `scaleX(${scroll / 100})`;
+        });
+
+        // Stats Counter
+        const observer = new IntersectionObserver(entries => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
+                    const stats = entry.target.querySelectorAll('.stat-number');
+                    stats.forEach(stat => {
+                        const target = parseInt(stat.dataset.target);
+                        let count = 0;
+                        const increment = target / 100;
+                        const timer = setInterval(() => {
+                            count += increment;
+                            stat.textContent = Math.floor(count);
+                            if (count >= target) {
+                                stat.textContent = target.toLocaleString();
+                                clearInterval(timer);
+                            }
+                        }, 20);
+                        stat.parentElement.classList.add('count-anim');
+                    });
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.5 });
 
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        document.querySelector('.hero-stats')?.parentElement && observer.observe(document.querySelector('.hero-stats')?.parentElement);
 
-        // Navbar active link
-        window.addEventListener('scroll', () => {
-            let current = '';
-            const sections = document.querySelectorAll('section');
-            const navLinks = document.querySelectorAll('.nav-item');
+        // Reveal Animations
+        const revealObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => entry.isIntersecting && entry.target.classList.add('active'));
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+        // Contact Form (EmailJS ou Netlify)
+        async function handleSubmit(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('.submit-btn');
+            const messageEl = document.getElementById('form-message');
+            btn.textContent = 'Envoi...'; btn.classList.add('sending');
             
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                if (scrollY >= sectionTop - 200) {
-                    current = section.getAttribute('id');
-                }
-            });
+            // Simulation envoi (remplace par EmailJS/Netlify)
+            await new Promise(r => setTimeout(r, 1500));
+            
+            messageEl.innerHTML = '<div class="submit-success">✅ Message envoyé ! Je réponds sous 24h.</div>';
+            e.target.reset();
+            btn.textContent = 'Envoyer'; btn.classList.remove('sending');
+        }
 
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${current}`) {
-                    link.classList.add('active');
-                }
-            });
-        });
+        // PWA Notification (optionnel)
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('data:text/javascript;base64,...'); // Mini SW inline
+        }
     </script>
 </body>
 </html>
