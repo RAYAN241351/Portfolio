@@ -221,6 +221,54 @@
             98% { transform: none; opacity: 0; }
         }
 
+
+        /* CV MODAL VIEWER */
+        #cv-modal {
+            display: none; position: fixed; inset: 0; z-index: 99990;
+            background: rgba(3,7,18,0.92); backdrop-filter: blur(12px);
+            align-items: center; justify-content: center;
+        }
+        #cv-modal.open { display: flex; animation: fadeInModal 0.3s ease; }
+        @keyframes fadeInModal {
+            from { opacity: 0; transform: scale(0.96); }
+            to   { opacity: 1; transform: scale(1); }
+        }
+        .cv-modal-inner {
+            background: rgba(10,15,30,0.98); border: 1px solid var(--border);
+            border-radius: 20px; overflow: hidden;
+            width: 90vw; max-width: 960px; height: 88vh;
+            display: flex; flex-direction: column;
+            box-shadow: 0 0 60px rgba(0,212,255,0.15);
+        }
+        .cv-modal-header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 1rem 1.5rem; border-bottom: 1px solid var(--border);
+            background: rgba(3,7,18,0.8);
+        }
+        .cv-modal-title {
+            font-family: 'JetBrains Mono', monospace; font-size: 0.85rem;
+            color: var(--cyan); display: flex; align-items: center; gap: 0.75rem;
+        }
+        .cv-modal-title::before { content: ''; width: 8px; height: 8px; background: var(--green); border-radius: 50%; animation: pulse 2s infinite; }
+        .cv-modal-actions { display: flex; gap: 0.75rem; align-items: center; }
+        .cv-modal-btn {
+            font-family: 'JetBrains Mono', monospace; font-size: 0.78rem;
+            padding: 0.4rem 1rem; border-radius: 6px; cursor: none;
+            border: 1px solid var(--border); background: transparent;
+            color: var(--text-dim); transition: all 0.2s ease;
+        }
+        .cv-modal-btn:hover { color: var(--cyan); border-color: var(--cyan); }
+        .cv-modal-btn.close-btn:hover { color: var(--red); border-color: var(--red); }
+        .cv-modal-btn.dl-btn { color: var(--violet); border-color: rgba(124,58,237,0.4); }
+        .cv-modal-btn.dl-btn:hover { background: rgba(124,58,237,0.1); box-shadow: var(--glow-violet); }
+        .cv-modal-frame {
+            flex: 1; width: 100%; border: none; background: #fff;
+        }
+        /* Fermer en cliquant en dehors */
+        #cv-modal-overlay {
+            position: absolute; inset: 0; z-index: -1;
+        }
+
         /* SCANLINES */
         body::before {
             content: '';
@@ -652,7 +700,7 @@
 
                     <div class="btn-group">
                         <a href="#projects" class="btn-primary"><i class="fas fa-terminal"></i> ./voir-projets</a>
-                        <a href="CV_Rayan_Rouis-1.pdf" class="btn-secondary" download><i class="fas fa-download"></i> ./cv.pdf</a>
+                        <button class="btn-secondary" onclick="openCvModal()"><i class="fas fa-file-lines"></i> ./cv.pdf</button>
                     </div>
                 </div>
 
@@ -1231,6 +1279,29 @@
         }
 
 
+
+    // ═══════════════════════════════════════════
+    // CV MODAL
+    // ═══════════════════════════════════════════
+    function openCvModal() {
+        const modal = document.getElementById('cv-modal');
+        const iframe = document.getElementById('cv-iframe');
+        // Charger le PDF seulement à l'ouverture (évite chargement inutile)
+        if (!iframe.src || iframe.src === window.location.href) {
+            iframe.src = 'CV_Rayan_Rouis-1.pdf';
+        }
+        modal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeCvModal() {
+        document.getElementById('cv-modal').classList.remove('open');
+        document.body.style.overflow = '';
+    }
+    // Fermer avec Escape
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeCvModal();
+    });
+
     // ═══════════════════════════════════════════
     // CUSTOM CURSOR
     // ═══════════════════════════════════════════
@@ -1402,11 +1473,10 @@
             { t: 'spacer',  v: '' },
         ],
         cv: () => {
-            const a = document.createElement('a');
-            a.href = 'CV_Rayan_Rouis-1.pdf'; a.download = 'CV_Rayan_Rouis-1.pdf';
-            a.click();
+            openCvModal();
             return [
-                { t: 'success', v: '  ✓ Téléchargement du CV lancé...' },
+                { t: 'success', v: '  ✓ Ouverture du CV en cours...' },
+                { t: 'dim',     v: '  (utilise le bouton "télécharger" dans la visionneuse)' },
             ];
         },
 
@@ -1584,5 +1654,33 @@
     termInput.focus();
 
     </script>
+
+    <!-- CV MODAL VIEWER -->
+    <div id="cv-modal" role="dialog" aria-label="CV Rayan ROUIS">
+        <div id="cv-modal-overlay" onclick="closeCvModal()"></div>
+        <div class="cv-modal-inner">
+            <div class="cv-modal-header">
+                <div class="cv-modal-title">
+                    <i class="fas fa-file-lines"></i>
+                    CV_Rayan_Rouis.pdf — visualisation
+                </div>
+                <div class="cv-modal-actions">
+                    <a href="CV_Rayan_Rouis-1.pdf" download class="cv-modal-btn dl-btn">
+                        <i class="fas fa-download"></i> télécharger
+                    </a>
+                    <button class="cv-modal-btn close-btn" onclick="closeCvModal()">
+                        <i class="fas fa-xmark"></i> fermer
+                    </button>
+                </div>
+            </div>
+            <iframe
+                class="cv-modal-frame"
+                id="cv-iframe"
+                src=""
+                title="CV Rayan ROUIS"
+            ></iframe>
+        </div>
+    </div>
+
 </body>
 </html>
