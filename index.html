@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rayan ROUIS — Admin Sys & IA · Portfolio 2026</title>
-    <meta name="description" content="Étudiant BTS SIO SISR. Admin systèmes, réseaux, IA locale. Stage OVEGNA SAS. Paris.">
+    <meta name="description" content="Étudiant BTS SIO SISR. Admin systèmes, réseaux, IA locale. Stage OVEGNA SAS. Orléans.">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'></text></svg>">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -32,6 +32,16 @@
             line-height: 1.7;
             overflow-x: hidden;
         }
+
+
+        .skill-card:nth-child(1) .skill-icon i { color: var(--cyan); }
+        .skill-card:nth-child(2) .skill-icon i { color: var(--cyan); }
+        .skill-card:nth-child(3) .skill-icon i { color: var(--violet); }
+        .skill-card:nth-child(4) .skill-icon i { color: var(--green); }
+        .skill-card:nth-child(5) .skill-icon i { color: #fbbf24; }
+        .skill-card:nth-child(6) .skill-icon i { color: var(--cyan); }
+        .skill-icon { font-size: 1.4rem; }
+        .soft-item .ico { font-size: 1.6rem; }
 
         /* SCANLINES */
         body::before {
@@ -137,18 +147,27 @@
             background: linear-gradient(135deg, var(--cyan), var(--violet));
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
-        /* GLITCH */
+        /* GLITCH — version stable cross-browser */
         .glitch {
             position: relative;
+            display: inline-block;
         }
         .glitch::before, .glitch::after {
             content: attr(data-text);
             position: absolute; top: 0; left: 0;
-            background: linear-gradient(135deg, var(--cyan), var(--violet));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            width: 100%; height: 100%;
+            background: transparent;
         }
-        .glitch::before { animation: glitch1 3s infinite; clip-path: polygon(0 20%, 100% 20%, 100% 40%, 0 40%); }
-        .glitch::after { animation: glitch2 3s infinite; clip-path: polygon(0 60%, 100% 60%, 100% 80%, 0 80%); }
+        .glitch::before {
+            color: var(--cyan);
+            clip-path: polygon(0 15%, 100% 15%, 100% 38%, 0 38%);
+            animation: glitch1 4s infinite;
+        }
+        .glitch::after {
+            color: var(--violet);
+            clip-path: polygon(0 62%, 100% 62%, 100% 82%, 0 82%);
+            animation: glitch2 4s infinite;
+        }
         @keyframes glitch1 { 0%,94%,100%{transform:none} 95%{transform:translate(-3px,1px) skew(2deg)} 97%{transform:translate(3px,-1px)} }
         @keyframes glitch2 { 0%,94%,100%{transform:none} 96%{transform:translate(3px,-1px) skew(-2deg)} 98%{transform:translate(-3px,1px)} }
 
@@ -435,7 +454,7 @@
                         <div class="t-line" style="padding-left:1.5rem;"><span class="t-key">"name"</span><span style="color:var(--text-dim);">: </span><span class="t-str">"Rayan ROUIS"</span><span style="color:var(--text-dim);">,</span></div>
                         <div class="t-line" style="padding-left:1.5rem;"><span class="t-key">"role"</span><span style="color:var(--text-dim);">: </span><span class="t-str">"Admin Sys & Réseaux · IA Locale"</span><span style="color:var(--text-dim);">,</span></div>
                         <div class="t-line" style="padding-left:1.5rem;"><span class="t-key">"school"</span><span style="color:var(--text-dim);">: </span><span class="t-str">"BTS SIO SISR · Lycée Fulbert"</span><span style="color:var(--text-dim);">,</span></div>
-                        <div class="t-line" style="padding-left:1.5rem;"><span class="t-key">"location"</span><span style="color:var(--text-dim);">: </span><span class="t-str">"Paris, France"</span><span style="color:var(--text-dim);">,</span></div>
+                        <div class="t-line" style="padding-left:1.5rem;"><span class="t-key">"location"</span><span style="color:var(--text-dim);">: </span><span class="t-str">"Orléans, France"</span><span style="color:var(--text-dim);">,</span></div>
                         <div class="t-line" style="padding-left:1.5rem;"><span class="t-key">"status"</span><span style="color:var(--text-dim);">: </span><span class="t-val">AVAILABLE</span><span style="color:var(--text-dim);">,</span></div>
                         <div class="t-line" style="padding-left:1.5rem;"><span class="t-key">"stack"</span><span style="color:var(--text-dim);">: [</span><span class="t-str">"Debian"</span><span style="color:var(--text-dim);">, </span><span class="t-str">"N8N"</span><span style="color:var(--text-dim);">, </span><span class="t-str">"TikTok API"</span><span style="color:var(--text-dim);">, </span><span class="t-str">"Ollama"</span><span style="color:var(--text-dim);">, </span><span class="t-str">"Docker"</span><span style="color:var(--text-dim);">]</span></div>
                         <div class="t-line"><span style="color:var(--text-dim);">}</span></div>
@@ -510,7 +529,7 @@
             <div class="skills-grid">
                 <div class="skill-card">
                     <div class="skill-card-header">
-                        <div class="skill-icon">🖥️</div>
+                        <div class="skill-icon"><i class="fas fa-server"></i></div>
                         <h3>Systèmes</h3>
                     </div>
                     <div class="tag-list">
@@ -520,7 +539,7 @@
                 </div>
                 <div class="skill-card">
                     <div class="skill-card-header">
-                        <div class="skill-icon">🌐</div>
+                        <div class="skill-icon"><i class="fas fa-network-wired"></i></div>
                         <h3>Réseaux</h3>
                     </div>
                     <div class="tag-list">
@@ -531,7 +550,7 @@
                 </div>
                 <div class="skill-card">
                     <div class="skill-card-header">
-                        <div class="skill-icon">📦</div>
+                        <div class="skill-icon"><i class="fas fa-cube"></i></div>
                         <h3>Virtualisation</h3>
                     </div>
                     <div class="tag-list">
@@ -542,7 +561,7 @@
                 </div>
                 <div class="skill-card">
                     <div class="skill-card-header">
-                        <div class="skill-icon">🤖</div>
+                        <div class="skill-icon"><i class="fas fa-robot"></i></div>
                         <h3>IA Locale</h3>
                     </div>
                     <div class="tag-list">
@@ -554,7 +573,7 @@
                 </div>
                 <div class="skill-card">
                     <div class="skill-card-header">
-                        <div class="skill-icon">⚡</div>
+                        <div class="skill-icon"><i class="fas fa-bolt"></i></div>
                         <h3>Automatisation</h3>
                     </div>
                     <div class="tag-list">
@@ -565,7 +584,7 @@
                 </div>
                 <div class="skill-card">
                     <div class="skill-card-header">
-                        <div class="skill-icon">🛠️</div>
+                        <div class="skill-icon"><i class="fas fa-screwdriver-wrench"></i></div>
                         <h3>Support & Outils</h3>
                     </div>
                     <div class="tag-list">
@@ -607,7 +626,7 @@
                     <div class="case-header" style="background: linear-gradient(135deg, rgba(245,158,11,0.12), rgba(0,212,255,0.08)); border-bottom: 1px solid rgba(245,158,11,0.2);">
                         <div class="case-type" style="color:#fbbf24;">stage · 2 mois · dernier stage</div>
                         <div class="case-title">Pipeline TikTok N8N — Automatisation complète</div>
-                        <div class="case-date">5 janv. 2026 → 27 févr. 2026 · Administrateur Réseaux et Systèmes </div>
+                        <div class="case-date">5 janv. 2026 → 27 févr. 2026 · Admin SI</div>
                     </div>
                     <div class="case-body">
                         <p class="case-desc">Conception et déploiement d'un pipeline 100% automatisé YouTube → TikTok : téléchargement yt-dlp, transcodage vertical ffmpeg (1080×1920), segmentation 90s/part, upload TikTok via API OAuth2 — le tout orchestré en 24 nodes N8N. File d'attente SQL MariaDB avec statuts <code style="color:var(--green);font-family:'JetBrains Mono',monospace;font-size:0.82rem;">pending / processing / completed / failed</code>. Livrable : documentation technique complète node par node.</p>
@@ -619,11 +638,11 @@
                             <span class="tag v">Deno</span><span class="tag">bgutil</span>
                         </div>
                         <div class="case-results">
-                            <div class="result-row"><span>🤖 Workflow</span><span class="result-val">24 nodes N8N</span></div>
-                            <div class="result-row"><span>📐 Format sortie</span><span class="result-val">1080×1920 · 90s/part</span></div>
-                            <div class="result-row"><span>🔐 Auth TikTok</span><span class="result-val">OAuth2 · RT 365j</span></div>
-                            <div class="result-row"><span>🗄️ Queue SQL</span><span class="result-val">MariaDB · 4 statuts</span></div>
-                            <div class="result-row"><span>🔁 Intervention manuelle</span><span class="result-val">0%</span></div>
+                            <div class="result-row"><span><i class="fas fa-diagram-project" style="color:var(--cyan);margin-right:.4rem;"></i>Workflow</span><span class="result-val">24 nodes N8N</span></div>
+                            <div class="result-row"><span><i class="fas fa-film" style="color:#fbbf24;margin-right:.4rem;"></i>Format sortie</span><span class="result-val">1080×1920 · 90s/part</span></div>
+                            <div class="result-row"><span><i class="fas fa-key" style="color:var(--green);margin-right:.4rem;"></i>Auth TikTok</span><span class="result-val">OAuth2 · RT 365j</span></div>
+                            <div class="result-row"><span><i class="fas fa-database" style="color:var(--violet);margin-right:.4rem;"></i>Queue SQL</span><span class="result-val">MariaDB · 4 statuts</span></div>
+                            <div class="result-row"><span><i class="fas fa-rotate" style="color:var(--cyan);margin-right:.4rem;"></i>Intervention manuelle</span><span class="result-val">0%</span></div>
                         </div>
                     </div>
                 </div>
@@ -644,14 +663,38 @@
                             <span class="tag y">CUDA</span><span class="tag y">Python</span>
                         </div>
                         <div class="case-results">
-                            <div class="result-row"><span>🎬 Réalisations</span><span class="result-val">Vidéos IA auto</span></div>
-                            <div class="result-row"><span>🖥️ Infrastructures</span><span class="result-val">Cluster local</span></div>
-                            <div class="result-row"><span>📄 Livrables</span><span class="result-val">Documentation complètes</span></div>
+                            <div class="result-row"><span><i class="fas fa-clapperboard" style="color:var(--violet);margin-right:.4rem;"></i>Réalisations</span><span class="result-val">Vidéos IA auto</span></div>
+                            <div class="result-row"><span><i class="fas fa-server" style="color:var(--cyan);margin-right:.4rem;"></i>Infrastructures</span><span class="result-val">Cluster local</span></div>
+                            <div class="result-row"><span><i class="fas fa-file-lines" style="color:#fbbf24;margin-right:.4rem;"></i>Livrables</span><span class="result-val">Documentation complètes</span></div>
                         </div>
                     </div>
                 </div>
 
-                
+                <!-- FiveM -->
+                <div class="case-card">
+                    <div class="case-header">
+                        <div class="case-type">freelance · 2024–présent</div>
+                        <div class="case-title">FiveM — Garage & Gang System</div>
+                        <div class="case-date">ESX · Scripts custom · NUI</div>
+                    </div>
+                    <div class="case-body">
+                        <p class="case-desc">Interface complète de gestion véhicules et tablettes boss pour serveurs RP. NUI responsive, Lua optimisé, HUDs realtime. 10+ serveurs déployés en production.</p>
+                        <div class="case-tags">
+                            <span class="tag">Lua</span><span class="tag">HTML/CSS/JS</span>
+                            <span class="tag">ESX</span><span class="tag">RageUI</span>
+                            <span class="tag v">ox_inventory</span>
+                        </div>
+                        <div class="case-results">
+                            <div class="result-row"><span><i class="fas fa-tower-broadcast" style="color:var(--cyan);margin-right:.4rem;"></i>Serveurs live</span><span class="result-val">10+</span></div>
+                            <div class="result-row"><span><i class="fas fa-star" style="color:#fbbf24;margin-right:.4rem;"></i>Avis clients</span><span class="result-val">★★★★★</span></div>
+                            <div class="result-row"><span><i class="fas fa-circle-check" style="color:var(--green);margin-right:.4rem;"></i>Uptime</span><span class="result-val">24/7</span></div>
+                        </div>
+                        <div class="case-links">
+                            <a href="#" class="case-link">voir démo →</a>
+                            <a href="#" class="case-link dim">github</a>
+                        </div>
+                    </div>
+                </div>
 
                 <!-- TikTok -->
                 <div class="case-card">
@@ -668,7 +711,7 @@
                             <span class="tag g">Debian</span>
                         </div>
                         <div class="case-results">
-                            <div class="result-row"><span>🎥 Vidéos/jour</span><span class="result-val">16</span></div>
+                            <div class="result-row"><span><i class="fas fa-video" style="color:var(--cyan);margin-right:.4rem;"></i>Vidéos/jour</span><span class="result-val">16</span></div>
                             <div class="result-row"><span>⏱️ Temps gagné</span><span class="result-val">90%</span></div>
                         </div>
                         <div class="case-links">
@@ -765,32 +808,32 @@
                 <div class="section-label" style="margin-bottom:2rem;">soft_skills</div>
                 <div class="soft-grid">
                     <div class="soft-item">
-                        <div class="ico">🤝</div>
+                        <div class="ico"><i class="fas fa-people-group" style="color:var(--cyan);"></i></div>
                         <p>Esprit de communauté</p>
                         <small>Forums · Discord · GitHub</small>
                     </div>
                     <div class="soft-item">
-                        <div class="ico">💡</div>
+                        <div class="ico"><i class="fas fa-lightbulb" style="color:#fbbf24;"></i></div>
                         <p>Solutions créatives</p>
                         <small>Toujours un plan B</small>
                     </div>
                     <div class="soft-item">
-                        <div class="ico">📡</div>
+                        <div class="ico"><i class="fas fa-satellite-dish" style="color:var(--cyan);"></i></div>
                         <p>Veille technologique</p>
                         <small>Naturelle & constante</small>
                     </div>
                     <div class="soft-item">
-                        <div class="ico">🎯</div>
+                        <div class="ico"><i class="fas fa-crosshairs" style="color:var(--green);"></i></div>
                         <p>Autonomie</p>
                         <small>100% opérationnel solo</small>
                     </div>
                     <div class="soft-item">
-                        <div class="ico">🧊</div>
+                        <div class="ico"><i class="fas fa-snowflake" style="color:#38bdf8;"></i></div>
                         <p>Gestion du stress</p>
                         <small>Incidents IT sans panique</small>
                     </div>
                     <div class="soft-item">
-                        <div class="ico">🎬</div>
+                        <div class="ico"><i class="fas fa-clapperboard" style="color:var(--violet);"></i></div>
                         <p>Montage vidéo</p>
                         <small>Post-production maîtrisée</small>
                     </div>
